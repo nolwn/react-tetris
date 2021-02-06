@@ -1,0 +1,37 @@
+.Cell {
+	width: 1rem;
+	height: 1rem;
+	border: 1.5pt #333 solid;
+}
+
+.Cell-off {
+	background-color: darkslategray;
+}
+
+.Cell-red {
+	background-color: orangered;
+}
+
+.Cell-orange {
+	background-color: coral;
+}
+
+.Cell-yellow {
+	background-color: yellow;
+}
+
+.Cell-green {
+	background-color: greenyellow;
+}
+
+.Cell-lightblue {
+	background-color: lightskyblue;
+}
+
+.Cell-purple {
+	background-color: plum;
+}
+
+.Cell-darkblue {
+	background-color: darkblue;
+}
