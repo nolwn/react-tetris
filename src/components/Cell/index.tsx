@@ -1,26 +1,22 @@
 import React from "react";
 import "./Cell.css";
 
-interface Props {}
-
-enum CellStatus {
-	Off = "off",
-	Red = "red",
-	Orange = "orange",
-	Yellow = "yellow",
-	Green = "green",
-	LightBlue = "lightblue",
-	Purple = "purple",
-	DarkBlue = "darkblue",
+interface Props {
+	color?: CellColor;
 }
 
-const statusMap = {
-	green: "Cell-green",
-	off: "Cell-off",
-};
+export type CellColor =
+	| "off"
+	| "red"
+	| "orange"
+	| "yellow"
+	| "green"
+	| "lightblue"
+	| "purple"
+	| "darkblue";
 
-const Cell: React.FC<Props> = () => (
-	<div className="Cell Cell-off" data-testid="off-cell" />
+const Cell: React.FC<Props> = ({ color = "off" }) => (
+	<div className={`Cell Cell-${color}`} data-testid={`cell`} />
 );
 
 export default Cell;

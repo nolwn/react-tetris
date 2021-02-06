@@ -1,34 +1,47 @@
 import React from "react";
-import Cell from "../Cell";
+import Cell, { CellColor } from "../Cell";
 import "./BuildArea.css";
 
-const WIDTH = 10;
-const HEIGHT = 20;
+interface Props {
+	cells: CellColor[];
+	height: number;
+	width: number;
+}
 
-interface Props {}
-
-const renderRows = (width: number, height: number): JSX.Element[] => {
+const renderRows = (
+	cellColors: CellColor[],
+	width: number,
+	height: number
+): JSX.Element[] => {
 	const rows = [];
+	let cells: JSX.Element[] = [];
 
-	for (let i = 0; i < height; i++) {
-		const cells = [];
+	for (let i = 0; i < height * width; i++) {
+		const color = cellColors[i];
 
-		for (let j = 0; j < width; j++) {
-			cells.push(<Cell key={`width: ${j} height: ${i}`} />);
+		cells.push(<Cell color={color} key={`index-${i}`} />);
+
+		if ((i + 1) % width === 0) {
+			rows.push(
+				<div
+					data-testid="BuildArea-row"
+					className="BuildArea-row"
+					key={`height-${(i + 1) / width}`}
+				>
+					{cells}
+				</div>
+			);
+
+			cells = [];
 		}
-		rows.push(
-			<div className="BuildArea-row" key={`height-${i}`}>
-				{cells}
-			</div>
-		);
 	}
 
 	return rows;
 };
 
-const BuildArea: React.FC<Props> = () => (
+const BuildArea: React.FC<Props> = ({ cells, width, height }) => (
 	<div id="BuildArea" data-testid="build-area">
-		{renderRows(WIDTH, HEIGHT)}
+		{renderRows(cells, width, height)}
 	</div>
 );
 
