@@ -1,8 +1,9 @@
+import React from "react";
 import BuildArea from "./components/BuildArea";
-import "./App.css";
 import { CellColor } from "./components/Cell";
+import "./App.css";
 
-const App = () => {
+const App = (): JSX.Element => {
 	const blankBuildArea: CellColor[] = [];
 
 	for (let i = 0; i < 200; i++) {

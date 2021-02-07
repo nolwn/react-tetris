@@ -15,7 +15,7 @@ export type CellColor =
 	| "purple"
 	| "darkblue";
 
-const Cell: React.FC<Props> = ({ color = "off" }) => (
+const Cell: React.FC<Props> = ({ color = "off" }: Props) => (
 	<div className={`Cell Cell-${color}`} data-testid={`cell`} />
 );
 
