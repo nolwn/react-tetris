@@ -18,3 +18,21 @@ test("Creates a new game", () => {
 
 	expect(board).toEqual(expectedBoard);
 });
+
+test("Gets the next piece", () => {
+	const game = new Game();
+	const { next } = game;
+
+	expect(next).toHaveLength(16);
+
+	const colors = next.reduce(
+		(acc: { [key: string]: boolean }, cell: CellColor) => {
+			acc[cell] = true;
+
+			return acc;
+		},
+		{}
+	);
+
+	expect(Object.values(colors)).toHaveLength(2);
+});
