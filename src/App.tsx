@@ -1,6 +1,6 @@
 import React from "react";
 import BuildArea from "./components/BuildArea";
-import { CellColor } from "./components/Cell";
+import { CellColor } from "./types";
 import "./App.css";
 
 const App = (): JSX.Element => {

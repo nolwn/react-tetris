@@ -1,5 +1,6 @@
 import React from "react";
-import Cell, { CellColor } from ".";
+import Cell from ".";
+import { CellColor } from "../../types";
 import { render } from "@testing-library/react";
 
 test("renders off cell", () => {

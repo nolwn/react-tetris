@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import BuildArea from ".";
-import { CellColor } from "../Cell";
+import { CellColor } from "../../types";
 
 test("Accepts and renders a list of cells", () => {
 	const cells: CellColor[] = ["off", "off", "green", "off", "red", "red"];

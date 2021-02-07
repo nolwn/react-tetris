@@ -1,5 +1,6 @@
 import React from "react";
-import Cell, { CellColor } from "../Cell";
+import Cell from "../Cell";
+import { CellColor } from "../../types";
 import "./BuildArea.css";
 
 interface Props {
