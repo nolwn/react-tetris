@@ -1,14 +1,12 @@
 import React from "react";
+import useLoop, { State } from "./useLoop";
 import BuildArea from "./components/BuildArea";
 import { CellColor } from "./types";
 import "./App.css";
 
 const App = (): JSX.Element => {
-	const blankBuildArea: CellColor[] = [];
-
-	for (let i = 0; i < 200; i++) {
-		blankBuildArea.push("off");
-	}
+	let blankBuildArea: CellColor[] = [];
+	useLoop((state: State) => (blankBuildArea = state.grid));
 
 	return (
 		<div className="App">
