@@ -12,7 +12,7 @@ function makeEmptyBoard(): CellColor[] {
 }
 
 test("Creates a new game", () => {
-	const game = new Game();
+	const game = new Game(null);
 	const { board } = game;
 	const expectedBoard = makeEmptyBoard();
 
@@ -20,7 +20,7 @@ test("Creates a new game", () => {
 });
 
 test("Gets the next piece", () => {
-	const game = new Game();
+	const game = new Game(null);
 	const { next } = game;
 
 	expect(next).toHaveLength(16);
