@@ -17,22 +17,5 @@ test("Creates a new game", () => {
 	const expectedBoard = makeEmptyBoard();
 
 	expect(board).toEqual(expectedBoard);
-});
-
-test("Gets the next piece", () => {
-	const game = new Game(null);
-	const { next } = game;
-
-	expect(next).toHaveLength(16);
-
-	const colors = next.reduce(
-		(acc: { [key: string]: boolean }, cell: CellColor) => {
-			acc[cell] = true;
-
-			return acc;
-		},
-		{}
-	);
-
-	expect(Object.values(colors)).toHaveLength(2);
+	expect(Array.isArray(game.queue)).toBeTruthy();
 });

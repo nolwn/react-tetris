@@ -1,7 +1,7 @@
 import Grid from "./Grid";
 import { OTetromino } from "./Tetromino";
 import { CellColor } from "../types";
-import { parseFile } from "./snapshots/parseSnapshot";
+import { parseFile } from "../testUtilities/parseSnapshot";
 
 function isActive(c: CellColor) {
 	c !== "off";

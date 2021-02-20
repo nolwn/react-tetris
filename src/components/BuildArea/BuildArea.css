@@ -1,8 +1,3 @@
-#BuildArea {
-	border: 2pt #333 solid;
-	display: inline-block;
-}
-
 .BuildArea-row {
 	display: flex;
 }

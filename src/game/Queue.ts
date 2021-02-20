@@ -1,3 +1,5 @@
+import Cell from "../components/Cell";
+import { CellColor } from "../types";
 import {
 	Tetromino,
 	ITetromino,
@@ -22,6 +24,12 @@ export default class Queue {
 
 	get tetrominoes(): Tetromino[] {
 		return this.#tetrominoes;
+	}
+
+	get colorData(): CellColor[][] {
+		return this.#tetrominoes.map((tetro) =>
+			tetro.pattern.map((flag) => (flag ? tetro.color : "off"))
+		);
 	}
 
 	loadTetrominoes(): void {

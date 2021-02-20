@@ -1,6 +1,6 @@
 import { GameState } from "../loop";
 import { CellColor } from "../types";
-import Grid from "./Grid";
+import Queue from "./Queue";
 
 export const GAME_WIDTH = 10;
 export const GAME_HEIGHT = 20;
@@ -10,15 +10,13 @@ export const INITIAL_SPEED = 1000;
 
 export default class Game {
 	board: CellColor[];
-	next: CellColor[];
+	#queue: Queue;
 	speed: number;
 
 	constructor(game: GameState | null) {
 		this.speed = INITIAL_SPEED;
-		this.next = this.blankGrid(NEXT_WIDTH, NEXT_HEIGHT);
+		this.#queue = new Queue();
 		this.board = this.blankGrid(GAME_WIDTH, GAME_HEIGHT);
-
-		this.next[0] = "darkblue";
 
 		if (game !== null) {
 			this.speed = game.speed;
@@ -29,13 +27,19 @@ export default class Game {
 		return {
 			speed: this.speed,
 			grid: this.board,
+			queue: [],
 		};
+	}
+
+	get queue(): CellColor[][] {
+		return this.#queue.colorData;
 	}
 
 	tick(): GameState {
 		return {
-			grid: [],
-			speed: 1000,
+			speed: this.speed,
+			grid: this.board,
+			queue: [],
 		};
 	}
 

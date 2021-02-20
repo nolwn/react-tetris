@@ -1,8 +1,3 @@
-// I don't care that this is extravagent overkill,
-// the ASCII art resemblesthe original Tetris and is
-// cool. I did this for fun anyway, this isn't like
-// my job or something.
-
 import fs from "fs";
 import path from "path";
 

@@ -41,9 +41,7 @@ const renderRows = (
 };
 
 const BuildArea: React.FC<Props> = ({ cells, width, height }: Props) => (
-	<div id="BuildArea" data-testid="build-area">
-		{renderRows(cells, width, height)}
-	</div>
+	<div data-testid="build-area">{renderRows(cells, width, height)}</div>
 );
 
 export default BuildArea;

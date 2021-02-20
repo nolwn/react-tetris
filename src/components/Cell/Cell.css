@@ -1,11 +1,6 @@
 .Cell {
-	width: 1rem;
-	height: 1rem;
-	border: 1.5pt #333 solid;
-}
-
-.Cell-off {
-	background-color: darkslategray;
+	width: 1.2rem;
+	height: 1.2rem;
 }
 
 .Cell-red {

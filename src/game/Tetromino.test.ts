@@ -1,4 +1,4 @@
-import { parseFile } from "./snapshots/parseSnapshot";
+import { parseFile } from "../testUtilities/parseSnapshot";
 import {
 	ITetromino,
 	JTetromino,

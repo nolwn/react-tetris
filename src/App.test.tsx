@@ -2,9 +2,9 @@ import React from "react";
 import { render } from "@testing-library/react";
 import App from "./App";
 
-test("contains build area", () => {
-	const { getByTestId } = render(<App />);
-	const buildArea = getByTestId("build-area");
+test("contains 2 build areas", () => {
+	const { getAllByTestId } = render(<App />);
+	const buildAreas = getAllByTestId("build-area");
 
-	expect(buildArea).toBeInTheDocument();
+	expect(buildAreas.length).toBe(2);
 });

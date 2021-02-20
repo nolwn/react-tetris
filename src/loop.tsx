@@ -5,6 +5,7 @@ import { useEffect } from "react";
 export interface GameState {
 	grid: CellColor[];
 	speed: number;
+	queue: CellColor[][];
 }
 
 interface HookVariables {
@@ -74,7 +75,7 @@ export function returnGame(): GameState | null {
 	return loadedGame;
 }
 
-export function reset() {
+export function reset(): void {
 	started = false;
 	game = null;
 }
