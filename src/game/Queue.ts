@@ -1,4 +1,3 @@
-import Cell from "../components/Cell";
 import { CellColor } from "../types";
 import {
 	Tetromino,

@@ -23,14 +23,6 @@ export default class Game {
 		}
 	}
 
-	get state(): GameState {
-		return {
-			speed: this.speed,
-			grid: this.board,
-			queue: [],
-		};
-	}
-
 	get queue(): CellColor[][] {
 		return this.#queue.colorData;
 	}

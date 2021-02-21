@@ -26,10 +26,7 @@ async function sleep(milliseconds: number): Promise<void> {
 }
 
 export async function startLoop(): Promise<void> {
-	if (started === true) {
-		console.log("Not restarting...");
-		return;
-	}
+	if (started === true) return;
 
 	if (loadedGame === null) {
 		game = new Game(new Queue());
@@ -45,7 +42,11 @@ export async function startLoop(): Promise<void> {
 		await sleep(game.speed);
 
 		for (const subscriber of subscribers) {
-			subscriber(game.state);
+			subscriber({
+				grid: game.board,
+				speed: game.speed,
+				queue: game.queue,
+			});
 		}
 
 		count++;

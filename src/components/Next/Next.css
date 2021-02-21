@@ -1,8 +1,11 @@
 #Next {
 	border: 2pt #333 solid;
 	display: inline-block;
-	padding: 1rem;
+	width: 4.8rem;
+	height: 4.8rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	margin: 0 1.2rem 1.2rem 1.2rem;
-	vertical-align: top;
 	border-radius: 7rem;
 }
