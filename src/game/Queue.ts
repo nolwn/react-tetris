@@ -11,6 +11,12 @@ import {
 	ZTetromino,
 } from "./Tetromino";
 
+function colorizePatterns(pattern: Tetromino[]) {
+	return pattern.map((tetro) =>
+		tetro.pattern.map((flag) => (flag ? tetro.color : "off"))
+	);
+}
+
 export default class Queue {
 	#tetrominoes: Tetromino[];
 	#bag: Tetromino[];
@@ -27,12 +33,10 @@ export default class Queue {
 	}
 
 	get colorData(): CellColor[][] {
-		return this.#tetrominoes.map((tetro) =>
-			tetro.pattern.map((flag) => (flag ? tetro.color : "off"))
-		);
+		return colorizePatterns(this.#tetrominoes);
 	}
 
-	loadTetrominoes(): void {
+	private loadTetrominoes(): void {
 		while (this.#tetrominoes.length < 7) {
 			const piece = this.#bag.pop();
 
@@ -47,7 +51,7 @@ export default class Queue {
 		}
 	}
 
-	fillBag(): void {
+	private fillBag(): void {
 		const filler = [
 			new ITetromino(),
 			new JTetromino(),
@@ -67,7 +71,25 @@ export default class Queue {
 		}
 	}
 
-	getRandomIndex(max: number): number {
+	protected getRandomIndex(max: number): number {
 		return Math.floor(Math.random() * max);
+	}
+}
+
+export class TestQueue extends Queue {
+	#loadedTetrominoes: Tetromino[];
+
+	constructor(tetrominoes: Tetromino[]) {
+		super();
+
+		this.#loadedTetrominoes = tetrominoes;
+	}
+
+	get tetrominoes(): Tetromino[] {
+		return this.#loadedTetrominoes.slice(0, 6);
+	}
+
+	get colorData(): CellColor[][] {
+		return colorizePatterns(this.#loadedTetrominoes);
 	}
 }

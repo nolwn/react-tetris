@@ -13,12 +13,12 @@ export default class Game {
 	#queue: Queue;
 	speed: number;
 
-	constructor(game: GameState | null) {
+	constructor(queue: Queue, game?: GameState) {
 		this.speed = INITIAL_SPEED;
-		this.#queue = new Queue();
+		this.#queue = queue;
 		this.board = this.blankGrid(GAME_WIDTH, GAME_HEIGHT);
 
-		if (game !== null) {
+		if (game !== undefined) {
 			this.speed = game.speed;
 		}
 	}

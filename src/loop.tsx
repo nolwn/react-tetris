@@ -1,6 +1,7 @@
 import { CellColor } from "./types";
 import Game from "./game";
 import { useEffect } from "react";
+import Queue from "./game/Queue";
 
 export interface GameState {
 	grid: CellColor[];
@@ -30,7 +31,11 @@ export async function startLoop(): Promise<void> {
 		return;
 	}
 
-	game = new Game(loadedGame);
+	if (loadedGame === null) {
+		game = new Game(new Queue());
+	} else {
+		game = new Game(new Queue(), loadedGame);
+	}
 
 	running = true;
 	started = true;
