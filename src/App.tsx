@@ -3,6 +3,7 @@ import { useLoop, startLoop, GameState } from "./loop";
 import BuildArea from "./components/BuildArea";
 import Next from "./components/Next";
 import "./App.css";
+import Matrix from "./components/Matrix";
 
 const App = (): JSX.Element => {
 	const [game, setGame] = useState<GameState>({
@@ -20,7 +21,7 @@ const App = (): JSX.Element => {
 
 	return (
 		<div className="App">
-			<BuildArea cells={game.grid} width={10} height={20} />
+			<Matrix cells={game.grid} />
 			<Next tetromino={next || []} />
 		</div>
 	);

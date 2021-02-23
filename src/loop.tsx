@@ -39,14 +39,11 @@ export async function startLoop(): Promise<void> {
 	let count = 0;
 
 	while (running) {
+		console.log("looping");
 		await sleep(game.speed);
 
 		for (const subscriber of subscribers) {
-			subscriber({
-				grid: game.board,
-				speed: game.speed,
-				queue: game.queue,
-			});
+			subscriber(game.tick());
 		}
 
 		count++;

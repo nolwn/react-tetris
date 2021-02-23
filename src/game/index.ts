@@ -1,5 +1,6 @@
 import { GameState } from "../loop";
 import { CellColor } from "../types";
+import Grid from "./Grid";
 import Queue from "./Queue";
 
 export const GAME_WIDTH = 10;
@@ -9,14 +10,14 @@ export const NEXT_HEIGHT = 4;
 export const INITIAL_SPEED = 1000;
 
 export default class Game {
-	board: CellColor[];
+	board: Grid;
 	#queue: Queue;
 	speed: number;
 
 	constructor(queue: Queue, game?: GameState) {
 		this.speed = INITIAL_SPEED;
 		this.#queue = queue;
-		this.board = this.blankGrid(GAME_WIDTH, GAME_HEIGHT);
+		this.board = new Grid(GAME_WIDTH, GAME_HEIGHT);
 
 		if (game !== undefined) {
 			this.speed = game.speed;
@@ -28,20 +29,17 @@ export default class Game {
 	}
 
 	tick(): GameState {
-		return {
-			speed: this.speed,
-			grid: this.board,
-			queue: [],
-		};
-	}
-
-	private blankGrid(width: number, height: number): CellColor[] {
-		const grid: CellColor[] = [];
-
-		for (let i = 0; i < width * height; i++) {
-			grid.push("off");
+		if (!this.board.active) {
+			const t = this.#queue.tetrominoes.shift();
+			if (t) {
+				this.board.spawn(t);
+			}
 		}
 
-		return grid;
+		return {
+			speed: this.speed,
+			grid: this.board.data,
+			queue: this.#queue.colorData,
+		};
 	}
 }

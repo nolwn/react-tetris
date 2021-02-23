@@ -9,7 +9,7 @@ interface Props {
 
 const Matrix: React.FC<Props> = ({ cells }: Props) => {
 	return (
-		<div>
+		<div id="Matrix">
 			<BuildArea cells={cells} width={10} height={20} />
 		</div>
 	);

@@ -1,4 +1,6 @@
-import { parseFile } from "../testUtilities/parseSnapshot";
+import Game from ".";
+import { colorizeFile, parseFile } from "../testUtilities/parseSnapshot";
+import Queue, { TestQueue } from "./Queue";
 import {
 	ITetromino,
 	JTetromino,
@@ -8,6 +10,26 @@ import {
 	TTetromino,
 	ZTetromino,
 } from "./Tetromino";
+
+const tetros = [
+	new ITetromino(),
+	new OTetromino(),
+	new ZTetromino(),
+	new LTetromino(),
+	new JTetromino(),
+	new STetromino(),
+	new TTetromino(),
+];
+
+const q = new TestQueue(tetros);
+
+const iSpawn = colorizeFile("i-spawn.txt", "lightblue");
+const jSpawn = colorizeFile("j-spawn.txt", "darkblue");
+const lSpawn = colorizeFile("l-spawn.txt", "orange");
+const oSpawn = colorizeFile("o-spawn.txt", "yellow");
+const sSpawn = colorizeFile("s-spawn.txt", "green");
+const tSpawn = colorizeFile("t-spawn.txt", "purple");
+const zSpawn = colorizeFile("z-spawn.txt", "red");
 
 describe("O Tetromino", () => {
 	test("Creates new O", () => {
@@ -334,5 +356,70 @@ describe("T Tetromino", () => {
 
 		t.counterClockwise();
 		expect(t.pattern).toEqual(fourRotations);
+	});
+});
+
+describe("Each piece spawns in the correct location", () => {
+	test("I Tetromino", () => {
+		const q = new TestQueue([new ITetromino()]);
+		const game = new Game(q);
+
+		game.tick();
+
+		expect(game.board.data).toEqual(iSpawn);
+	});
+
+	test("J Tetromino", () => {
+		const q = new TestQueue([new JTetromino()]);
+		const game = new Game(q);
+
+		game.tick();
+
+		expect(game.board.data).toEqual(jSpawn);
+	});
+
+	test("L Tetromino", () => {
+		const q = new TestQueue([new LTetromino()]);
+		const game = new Game(q);
+
+		game.tick();
+
+		expect(game.board.data).toEqual(lSpawn);
+	});
+
+	test("O Tetromino", () => {
+		const q = new TestQueue([new OTetromino()]);
+		const game = new Game(q);
+
+		game.tick();
+
+		expect(game.board.data).toEqual(oSpawn);
+	});
+
+	test("S Tetromino", () => {
+		const q = new TestQueue([new STetromino()]);
+		const game = new Game(q);
+
+		game.tick();
+
+		expect(game.board.data).toEqual(sSpawn);
+	});
+
+	test("T Tetromino", () => {
+		const q = new TestQueue([new TTetromino()]);
+		const game = new Game(q);
+
+		game.tick();
+
+		expect(game.board.data).toEqual(tSpawn);
+	});
+
+	test("Z Tetromino", () => {
+		const q = new TestQueue([new ZTetromino()]);
+		const game = new Game(q);
+
+		game.tick();
+
+		expect(game.board.data).toEqual(zSpawn);
 	});
 });

@@ -16,7 +16,7 @@ test("returnGame returns null when a game has not been started", () => {
 });
 
 test("loadGame takes a game state which can then be returned", () => {
-	const game: GameState = { grid: [], speed: 0 };
+	const game: GameState = { grid: [], speed: 0, queue: [] };
 	loadGame(game);
 
 	const loadedGame = returnGame();
@@ -26,7 +26,7 @@ test("loadGame takes a game state which can then be returned", () => {
 
 test("useLoop takes a function which doesn't fire on its own", async () => {
 	let fired = false;
-	const game: GameState = { grid: [], speed: 0 };
+	const game: GameState = { grid: [], speed: 0, queue: [] };
 	loadGame(game);
 
 	const LoopTest: React.FC<Record<string, never>> = () => {
@@ -50,7 +50,7 @@ test("useLoop takes a function which doesn't fire on its own", async () => {
 
 test("useLoop begins returning data once startLoop has been fired", async () => {
 	let fired = false;
-	const game: GameState = { grid: [], speed: 0 };
+	const game: GameState = { grid: [], speed: 0, queue: [] };
 	loadGame(game);
 
 	const LoopTest: React.FC<Record<string, never>> = () => {
@@ -74,7 +74,7 @@ test("useLoop returns a terminate function", async () => {
 	let kill: () => void;
 	let count = 0;
 
-	const game: GameState = { grid: [], speed: 0 };
+	const game: GameState = { grid: [], speed: 0, queue: [] };
 	loadGame(game);
 
 	const LoopTest: React.FC<Record<string, never>> = () => {

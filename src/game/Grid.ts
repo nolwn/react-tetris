@@ -48,7 +48,7 @@ export default class {
 
 	spawn(t: Tetromino): void {
 		this.active = {
-			coords: [3, -1],
+			coords: t.spawnCoords,
 			tetromino: t,
 		};
 	}

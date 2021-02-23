@@ -1,6 +1,7 @@
 import Game from ".";
+import { colorizeFile } from "../testUtilities/parseSnapshot";
 import { CellColor } from "../types";
-import Queue, { TestQueue } from "./Queue";
+import { TestQueue } from "./Queue";
 import {
 	Tetromino,
 	ITetromino,
@@ -22,29 +23,42 @@ function makeEmptyBoard(): CellColor[] {
 	return colors;
 }
 
-test("Creates a new game", () => {
-	const game = new Game(new Queue());
-	const { board } = game;
-	const expectedBoard = makeEmptyBoard();
+const tetros = [
+	new OTetromino(),
+	new ITetromino(),
+	new ZTetromino(),
+	new LTetromino(),
+	new JTetromino(),
+	new STetromino(),
+	new TTetromino(),
+];
+const colorizePatterns = (tetrominoes: Tetromino[]) =>
+	tetrominoes.map((t) => t.pattern.map((b) => (b ? t.color : "off")));
+const q = new TestQueue(tetros);
 
-	expect(board).toEqual(expectedBoard);
+const oSpawn = colorizeFile("o-spawn.txt", "yellow");
+
+test("Creates a new game", () => {
+	const game = new Game(q);
+	const { data } = game.board;
+
+	expect(data).toEqual(makeEmptyBoard());
 	expect(Array.isArray(game.queue)).toBeTruthy();
 });
 
 test("Game accepts a queue and returns pieces based on what it returns", () => {
-	const tetros = [
-		new ITetromino(),
-		new ZTetromino(),
-		new LTetromino(),
-		new JTetromino(),
-		new STetromino(),
-		new OTetromino(),
-		new TTetromino(),
-	];
-	const colorizePatterns = (tetrominoes: Tetromino[]) =>
-		tetrominoes.map((t) => t.pattern.map((b) => (b ? t.color : "off")));
-	const q = new TestQueue(tetros);
 	const game = new Game(q);
 
 	expect(game.queue).toEqual(colorizePatterns(tetros));
+});
+
+test("Game spawns first tetromino in queue after first tick", () => {
+	const game = new Game(q);
+
+	game.tick();
+
+	const { data } = game.board;
+
+	expect(data).toEqual(oSpawn);
+	expect(Array.isArray(game.queue)).toBeTruthy();
 });

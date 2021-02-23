@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { CellColor } from "../types";
 
 function isBlock(cell: string): boolean {
 	if (cell === "[]") return true;
@@ -29,4 +30,9 @@ export function parseFile(filename: string): boolean[] {
 	}
 
 	return blockMap;
+}
+
+export function colorizeFile(filename: string, color: CellColor): CellColor[] {
+	const pattern = parseFile(filename);
+	return pattern.map((flag) => (flag ? color : "off"));
 }
